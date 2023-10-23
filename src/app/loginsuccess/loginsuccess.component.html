@@ -1,0 +1,19 @@
+<!-- <router-outlet></router-outlet> -->
+<div class="container-fluid g-0">
+    <app-header (sideNavToggled)="Status = $event"></app-header>
+
+    <main>
+        <app-side-nav [sideNavStatus] = "Status" [ngClass]="{'app-side-nav-open':Status}" (currentOption)="setScreen($event)"></app-side-nav>
+        
+        <div class="display-area p-3" [ngClass]="{'display-area-shrink':Status}">
+            
+            <div [ngSwitch] = "currentScreen">
+                <app-nms *ngSwitchCase="'NMS'" ></app-nms>
+                
+                <div *ngSwitchDefault>
+                    <p class="fs-1 fw-bold fst-italic">Inventory Reconciliation</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
